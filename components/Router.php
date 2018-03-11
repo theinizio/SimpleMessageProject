@@ -22,29 +22,34 @@ class Router
 
 	public function run()
 	{
+		
 		$uri = $this->getURI();
 		$allPath = explode("?",$uri);
 		$uri = $allPath[0];
+		if(strlen($uri)>4) 
+			$uri = str_replace("smp/", "", $uri); //remove subfolder name from path
+			//$uri = substr($uri, 4, strlen($uri));
+		if($uri=='smp')$uri='';
 		
+		//var_dump($uri);
 		foreach ($this->routes as $uriPattern => $path) {
 
 			if(preg_match("~$uriPattern~", $uri)) {
 						
-				//echo "<br>Где ищем (запрос, который набрал пользователь): ".$uri;
-				//echo "<br>Что ищем (совпадение из правила): ".$uriPattern;
-				//echo "<br>Кто обрабатывает: ".$path; 
+				
 
 				// Получаем внутренний путь из внешнего согласно правилу.
 
 				$internalRoute = preg_replace("~$uriPattern~", $path, $uri, 1);
 
-				//echo '<br>Нужно сформулировать: '.$internalRoute.'<br>'; 
+				
 
 				$segments = explode('/', $internalRoute);
+				//array_shift($segments);
 				
 				$controllerName = array_shift($segments).'Controller';
 				$controllerName = ucfirst($controllerName);
-
+				//var_dump($controllerName);
 
 				$actionName = 'action'.ucfirst(array_shift($segments));
 
@@ -57,8 +62,7 @@ class Router
 				}
 				
 				$controllerObject = new $controllerName;
-				/*$result = $controllerObject->$actionName($parameters); - OLD VERSION */
-				//$result = call_user_func(array($controllerObject, $actionName), $parameters);
+				
 				$result = call_user_func_array(array($controllerObject, $actionName), $parameters);
 				
 				if ($result != null) {

@@ -1,10 +1,10 @@
 <?php
-/*
- * login_with_google.php
- *
- * @(#) $Id: login_with_google.php,v 1.7 2013/07/31 11:48:04 mlemos Exp $
- *
- */
+			/*
+			 * 
+			 *
+			 * @(#) $Id: login_with_google.php,v 1.7 2013/07/31 11:48:04 mlemos Exp $
+			 *
+			 */
 
 	/*
 	 *  Get the http.php file from http://www.phpclasses.org/httpclient
@@ -22,7 +22,9 @@
 	$client->debug = false;
 	$client->debug_http = true;
 	$client->redirect_uri = 'http://'.$_SERVER['HTTP_HOST'].
-		dirname(strtok($_SERVER['REQUEST_URI'],'?')).'/login_with_google.php';
+		dirname(strtok($_SERVER['REQUEST_URI'],'?')).'/google';
+	
+	//file_put_contents("insert.log", $client->redirect_uri."\n", FILE_APPEND | LOCK_EX);
 
 	$client->client_id = '702376632458-1s7eu0kkilhhm0eo6fi7n5j8a50vf0ck.apps.googleusercontent.com'; $application_line = __LINE__;
 	$client->client_secret = '4jH0x0mh46i2en00EvbgF0BD';
@@ -58,40 +60,9 @@
 		}
 		$success = $client->Finalize($success);
 	}
+	
+	
+	
 	if($client->exit)
 		exit;
-	if($success)
-	{
-?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<title>Google OAuth client results</title>
-</head>
-<body>
-<?php
-		echo '<h1>', HtmlSpecialChars($user->name),
-			' you have logged in successfully with Google!</h1>';
-		echo '<pre>', HtmlSpecialChars(print_r($user, 1)), '</pre>';
-?>
-</body>
-</html>
-<?php
-	}
-	else
-	{
-?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<title>OAuth client error</title>
-</head>
-<body>
-<h1>OAuth client error</h1>
-<pre>Error: <?php echo HtmlSpecialChars($client->error); ?></pre>
-</body>
-</html>
-<?php
-	}
-
 ?>

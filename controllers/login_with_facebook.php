@@ -1,5 +1,5 @@
 <?php
-/*
+		/*
  * login_with_facebook.php
  *
  * @(#) $Id: login_with_facebook.php,v 1.6 2016/08/07 04:37:14 mlemos Exp $
@@ -23,7 +23,7 @@
 	$client->reauthenticate = false;
 
 	$client->redirect_uri = 'http://'.$_SERVER['HTTP_HOST'].
-		dirname(strtok($_SERVER['REQUEST_URI'],'?')).'/login_with_facebook.php';
+		dirname(strtok($_SERVER['REQUEST_URI'],'?')).'/facebook';
 
 	$client->client_id = '1583034881809793'; $application_line = __LINE__;
 	$client->client_secret = 'e07ad7063d9cef07c4e89fb3f04494e6';
@@ -99,39 +99,4 @@
 	}
 	if($client->exit)
 		exit;
-	if($success)
-	{
-?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<title>Facebook OAuth client results</title>
-</head>
-<body>
-<?php
-		echo '<h1>', HtmlSpecialChars($user->name), 
-			' you have logged in successfully with Facebook!</h1>';
-		echo '<pre>', HtmlSpecialChars(print_r($user, 1)), '</pre>';
-		echo '<pre>', HtmlSpecialChars(print_r($post, 1)), '</pre>';
-?>
-</body>
-</html>
-<?php
-	}
-	else
-	{
-?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<title>OAuth client error</title>
-</head>
-<body>
-<h1>OAuth client error</h1>
-<pre>Error: <?php echo HtmlSpecialChars($client->error); ?></pre>
-</body>
-</html>
-<?php
-	}
-
 ?>

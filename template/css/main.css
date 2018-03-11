@@ -1,9 +1,12 @@
-/* reset */
-* { margin:0; padding:0; }
+
 
 /* footer bottom */
 html { height:100%; }
 body { min-height:100%; height:100%; }
+  body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
 #page { height:auto !important; min-height:100%; height:100%; overflow:hidden; }
 #footer_guarantor { height:120px; }
 #footer { height:117px; overflow:hidden; margin-top:-120px; margin-bottom:0; border-top:solid 3px #000000; }
@@ -58,12 +61,38 @@ margin-bottom:.5em;
 padding-left:1.1em;
 
 }
-.post{
+
+.before_post{
 width:75%;
-border: 3px solid black;
+margin-top:10px;
+margin:auto;
 }
 
 
+.post{
+width:75%;
+border: 2px solid rgba(0,0,0,0.3);
+border-right:none;
+overflow: auto;
+overscroll-behavior: contain;
+height: 500px;
+margin-top:10px;
+margin:auto;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 2px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
 
 
 body, input, select, textarea, legend {
@@ -76,9 +105,62 @@ color:#000000;
 
 
 
+form, input{
+vertical-align:middle;
+display: inline;
+}
+
+.logout_form, .compose_form{
+	display:inline;
+	margin: 20px;
+}
 
 
+.form_comment, .comments_wrapper, .hideComments, .form_edit_message, .form_edit_comment{
+display:none;
+}
 
+.message_header, .comment_header{
+ color: #cccccc;
+ }
+ 
+.comment_image{
+	float: left;
+    
+    padding-top: 1%;
+    padding-right: 1%;
+} 
+
+.message_main{
+    font-family: Roboto, Arial, sans-serif;
+font-weight: bold;
+font-size:large;
+}
+
+.comment_textarea{
+	border:0;
+	border-bottom: 3px solid;
+	border-bottom-color:darkgrey;
+    resize: none;
+
+    outline: none;
+    box-shadow: none;
+    padding: 10px;
+    
+    background: transparent;
+    
+    
+    -webkit-appearance: none;
+    text-align: inherit;
+    font-family: 'Roboto', 'Noto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    
+
+
+}
 
 
 a { text-decoration:none; border-bottom-width:1px; border-bottom-style:solid; }
@@ -92,5 +174,14 @@ a:active { color:#ee2222; border-bottom-color:rgba(238,0,119,.33); }
 
 
 
-
+.delete_button {
+     background:none!important;
+     color:inherit;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     /*border is optional*/
+     border-bottom:1px solid #444; 
+     cursor: pointer;
+}
 

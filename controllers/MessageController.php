@@ -1,36 +1,25 @@
 <?php
 
 include_once ROOT. '/models/Message.php';
+include_once ROOT. "/components/User.php";
 
 
 class MessageController
 {
 
 		
-		public function actionIndex()
+		public function  actionIndex()  
 		{
 			
-			$mesageList = array();
-			$mes=new Message();
-			$messageList = $mes->getMessageTree();
 			
-			require_once(ROOT . '/views/message/index.php');
+			
+			
+			require_once(ROOT . '/views/index.php');
 	
 			return true;
 		}
 
-		public function actionView($id)
-		{
-			if ($id) {
-				$messageItem = Message::getMessageItemByID($id);
-	
-				require_once(ROOT . '/views/message/view.php');
-	
-			}
-	
-			return true;
-	
-		}
+		
 	
 		
 

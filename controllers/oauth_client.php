@@ -349,7 +349,7 @@ class oauth_client_class
 	</variable>
 {/metadocument}
 */
-	var $configuration_file = 'oauth_configuration.json';
+	var $configuration_file = "oauth_configuration.json";
 
 /*
 {metadocument}
@@ -2595,6 +2595,14 @@ class oauth_client_class
 				$this->access_token_url = 'https://api.login.yahoo.com/oauth/v2/get_token';
 				$this->authorization_header = false;
 				break;
+				
+			case 'VK':
+		
+			$this->oauth_version = "2.0";
+			$this->dialog_url = "https://oauth.vk.com/authorize?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope={SCOPE}&state={STATE}";
+			$this->access_token_url = "https://oauth.vk.com/access_token";
+			$this->store_access_token_response = true;
+			break;
 
 			default:
 				if(!($json = @file_get_contents($this->configuration_file)))
